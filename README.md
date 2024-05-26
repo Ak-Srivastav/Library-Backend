@@ -88,17 +88,28 @@
 ├───📄 package-lock.json
 ├───📄 package.json
 └───📄 README.md
-
-
-
 ```
+
 ## API Documentation - Authentication
 
-This table provides an overview of the available API endpoints for managing categories.
+This table provides an overview of the available API endpoints for Auth.
 
-| Category | Method | Endpoint | Purpose |
+| Name | Method | Endpoint | Purpose |
 |---|---|---|---|
-| I. Create | POST | /api/seller/create | To create a new book. |
+| I. Register | POST | /api/auth/register | To Register a New User. |
+| II. Login | POST | /api/auth/login | Login for existing User. |
+
+## Seller
+
+This table provides an overview of the available API endpoints for Seller.
+
+| Name | Method | Endpoint | Purpose |
+|---|---|---|---|
+| I.  Create    | POST | /api/seller/create | To Create a new book. |
+| II. GetBooks | GET | /api/seller/get | Fetch All Books Created by Current Seller. |
+| III. GetBook | GET | /api/seller/get/:id | Fetch Book details with id (parameter) if created by Current Seller. |
+
+
 
 **Note:**
 
