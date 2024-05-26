@@ -1,10 +1,11 @@
-# Menu Management
+# Library Backend
 
 ## 🧰:Languages and Tools:
 
 ![NodeJS](https://img.shields.io/badge/nodejs%20-%ffb400.svg?&style=for-the-badge&logo=nodeJs&logoColor=white)
 ![ExpressJS](https://img.shields.io/badge/expressjs%20-%23FF6F00.svg?&style=for-the-badge&logo=express&logoColor=white)
-
+<img src="https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL Badge">
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker Badge">
 ## How to run:
 
 - Clone this repository or fork it.
@@ -16,14 +17,29 @@
 - Store your database information
 - example:
   ```
-    PORT = 3000
-    JWT_SECRET = ajdkhurihkdjb&YT&^gy3uhhr8gJB
-    USER = postgres
-    PASSWORD = amit1234
-    HOST = localhost
-    DB_PORT = 5432
-    DATABASE = postgres
+  #for docker
+  POSTGRESDB_USER=postgres
+  POSTGRESDB_ROOT_PASSWORD=123456
+  POSTGRESDB_DATABASE=postgres
+  POSTGRESDB_LOCAL_PORT=5433
+  POSTGRESDB_DOCKER_PORT=5432
+  NODE_LOCAL_PORT=6868
+  NODE_DOCKER_PORT=8080
+  JWT_SECRET=9839u78yhgjkhft87yy87gh^&y843uih
+  
+  #for your local system
+  PORT = 3000
+  DB_USER = postgres
+  DB_PASSWORD = amit1234
+  DB_HOST = localhost
+  DB_PORT = 5432
+  DB_DATABASE = postgres
+  
+  # I highly recommend to keep both settings
   ```
+## How to Run?
+
+#Method 1
   
 - Install all dependencies
   - Server side: on the `Library-Backend` directory type `npm install`
@@ -31,12 +47,52 @@
 - Run it on node js:
   - Server side: on the `Library-Backend` directory type `npm start`
 
+#Method 2
+- Run using docker
+`docker-compose up`
+- It'll run on PORT `6868` on your Local-System 
+
 ## Directory Structure
 ```
+├───📁 api/
+│   ├───📁 config/
+│   │   ├───📄 connectDB.js
+│   │   ├───📄 getClient.js
+│   │   └───📄 Init.js
+│   ├───📁 controllers/
+│   │   ├───📁 Auth/
+│   │   │   └───📄 authController.js
+│   │   ├───📁 Buyer/
+│   │   │   └───📄 buyerController.js
+│   │   ├───📁 error/
+│   │   │   └───📄 ApiError.js
+│   │   ├───📁 response/
+│   │   │   └───📄 ApiResponse.js
+│   │   └───📁 Seller/
+│   │       └───📄 sellerController.js
+│   ├───📁 middlewares/
+│   │   ├───📄 ApiErrorMiddleware.js
+│   │   ├───📄 Async.js
+│   │   └───📄 HandleNotFoundMiddleware.js
+│   ├───📁 routes/
+│   │   ├───📄 authRoute.js
+│   │   ├───📄 buyerRoute.js
+│   │   └───📄 sellerRoute.js
+│   ├───📁 utils/
+│   │   └───📄 jwt.js
+│   └───📄 server.js
+├───📄 .gitignore
+├───📄 docker-compose.yml
+├───📄 Dockerfile
+├───📄 example.csv
+├───📄 package-lock.json
+├───📄 package.json
+└───📄 README.md
+
 
 
 ```
-## API Documentation - Seller
+## API Documentation - Authentication
 
 This table provides an overview of the available API endpoints for managing categories.
 
