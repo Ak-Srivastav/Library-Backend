@@ -1,7 +1,19 @@
+#for docker
+POSTGRESDB_USER=postgres
+POSTGRESDB_ROOT_PASSWORD=123456
+POSTGRESDB_DATABASE=postgres
+POSTGRESDB_LOCAL_PORT=5433
+POSTGRESDB_DOCKER_PORT=5432
+NODE_LOCAL_PORT=6868
+NODE_DOCKER_PORT=8080
+JWT_SECRET=9839u78yhgjkhft87yy87gh^&y843uih
+
+# for your local system
 PORT = 3000
-JWT_SECRET = ajdkhurihkdjb&YT&^gy3uhhr8gJB
-USER = postgres
-PASSWORD = amit1234
-HOST = localhost
+DB_USER = postgres
+DB_PASSWORD = amit1234
+DB_HOST = localhost
 DB_PORT = 5432
-DATABASE = postgres
+DB_DATABASE = postgres
+
+# I highly recommend to keep both settings
