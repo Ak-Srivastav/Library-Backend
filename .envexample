@@ -1,0 +1,7 @@
+PORT = 3000
+JWT_SECRET = ajdkhurihkdjb&YT&^gy3uhhr8gJB
+USER = postgres
+PASSWORD = amit1234
+HOST = localhost
+DB_PORT = 5432
+DATABASE = postgres
