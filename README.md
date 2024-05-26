@@ -28,7 +28,7 @@
   JWT_SECRET=9839u78yhgjkhft87yy87gh^&y843uih
   
   #for your local system
-  PORT = 3000
+  PORT = 6868
   DB_USER = postgres
   DB_PASSWORD = amit1234
   DB_HOST = localhost
