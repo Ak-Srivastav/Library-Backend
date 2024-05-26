@@ -5,7 +5,7 @@ const { GetClient } = require("../../config/getClient");
 
 // Get Book (Single)
 const getBook = Async(async (req, res) => {
-  if (req.role != "buyer") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "buyer") throw new ApiError("Unauthorized", 401);
   const bookId = req.params.id;
   const DB = await GetClient();
   const qry = `SELECT * FROM BOOK WHERE ID = ($1)`;
@@ -20,7 +20,7 @@ const getBook = Async(async (req, res) => {
 
 // Get Book (All)
 const getBooks = Async(async (req, res) => {
-  if (req.role != "buyer") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "buyer") throw new ApiError("Unauthorized", 401);
   const DB = await GetClient();
   const qry = `SELECT * FROM BOOK`;
   const qryres = await DB.query(qry);

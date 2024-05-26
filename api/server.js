@@ -20,7 +20,7 @@ const HandleApiError = require("./middlewares/ApiErrorMiddleware");
 /*==============================
 include environment variables
 ==============================*/
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.NODE_DOCKER_PORT || 6868;
 
 /*==============================
 server application configurations
@@ -54,6 +54,7 @@ public endpoint for file/media access
 /*==============================
 start server listen
 ==============================*/
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

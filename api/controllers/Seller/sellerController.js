@@ -7,7 +7,8 @@ const { GetClient } = require("../../config/getClient");
 
 // Create Book
 const createBook = Async(async (req, res) => {
-  if (req.role != "seller") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "seller")
+    throw new ApiError("Only Sellers are Allowed! Unauthorized (Create)", 401);
   const {
     isbn,
     title,
@@ -51,7 +52,11 @@ const getCSV = async () => {
 
 // Create Book (CSV)
 const createBooks = Async(async (req, res) => {
-  if (req.role != "seller") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "seller")
+    throw new ApiError(
+      "Only Sellers are Allowed! Unauthorized (CreateBooks)",
+      401
+    );
   const result = await getCSV();
   const successISBN = [];
   const success = 0;
@@ -74,7 +79,8 @@ const createBooks = Async(async (req, res) => {
 
 // Get Book (Single By Author)
 const getBook = Async(async (req, res) => {
-  if (req.role != "seller") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "seller")
+    throw new ApiError("Only Sellers are Allowed! Unauthorized (GETBOOK)", 401);
   const bookId = req.params.id;
   const DB = await GetClient();
   const qry = `SELECT * FROM BOOK WHERE ID = ($1)`;
@@ -91,7 +97,11 @@ const getBook = Async(async (req, res) => {
 
 // Get Book by (Only Author's Book)
 const getBooks = Async(async (req, res) => {
-  if (req.role != "seller") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "seller")
+    throw new ApiError(
+      "Only Sellers are Allowed! Unauthorized (GETBOOKS)",
+      401
+    );
   const userId = req.userid;
   const DB = await GetClient();
   const qry = `SELECT * FROM BOOK WHERE AUTHOR_ID = ($1)`;
@@ -102,9 +112,9 @@ const getBooks = Async(async (req, res) => {
 
 // Update Book
 const updateBook = Async(async (req, res) => {
-  if (req.role != "seller") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "seller")
+    throw new ApiError("Only Sellers are Allowed! Unauthorized (update)", 401);
   const bookId = req.params.id;
-  console.log("Book ID is :", bookId);
   const DB = await GetClient();
   const qry = `SELECT * FROM BOOK WHERE ID = ($1)`;
   const qryres = await DB.query(qry, [bookId]);
@@ -119,7 +129,6 @@ const updateBook = Async(async (req, res) => {
   const updateQry = `UPDATE BOOK SET ${updateFields.map(
     (field) => `${field} = ${updateValues.shift()}`
   )} WHERE ID = (${bookId})`;
-  console.log("Update Query", updateQry);
   const updateData = Object.values(req.body);
   await DB.query(updateQry, updateData);
   await DB.end();
@@ -128,7 +137,8 @@ const updateBook = Async(async (req, res) => {
 
 // Delete Book
 const deleteBook = Async(async (req, res) => {
-  if (req.role != "seller") throw new ApiError("Unauthorized", 401);
+  if (req.role.trim() != "seller")
+    throw new ApiError("Only Sellers are Allowed! Unauthorized (Delete)", 401);
   const bookId = req.params.id;
   const DB = await GetClient();
   const qry = `SELECT * FROM BOOK WHERE ID = ($1)`;

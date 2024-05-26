@@ -5,7 +5,6 @@ const { GetClient } = require("../../config/getClient");
 const bcryptjs = require("bcryptjs");
 
 const signUp = Async(async (req, res) => {
-  console.log(req.body);
   const { username, email, password, role } = req.body;
   if (!username) throw new ApiError("Enter Username");
   if (!email) throw new ApiError("Enter Email");
@@ -13,7 +12,6 @@ const signUp = Async(async (req, res) => {
   if (!role) throw new ApiError("Enter Role");
   if (role !== "buyer" && role !== "seller")
     throw new ApiError("Select Role (buyer, seller)");
-  console.log(req.body);
   const DB = await GetClient();
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const qry = `INSERT INTO users (username, email, password,role) VALUES ($1, $2, $3, $4)`;
@@ -23,7 +21,6 @@ const signUp = Async(async (req, res) => {
 });
 
 const login = Async(async (req, res, next) => {
-  console.log(req.body);
   const { email, password } = req.body;
   if (!email) throw new ApiError("Enter Email");
   if (!password) throw new ApiError("Enter Password");
@@ -35,8 +32,10 @@ const login = Async(async (req, res, next) => {
   const validPassword = bcryptjs.compareSync(password, user.password);
   if (!validPassword) throw new ApiError("Wrong Password!", 401);
   await DB.end();
-  req.id = user.id;
-  req.role = user.role;
+  const id = user.id;
+  req.id = id;
+  const role = user.role;
+  req.role = role;
   next();
 });
 

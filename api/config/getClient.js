@@ -2,11 +2,11 @@ const { Client } = require("pg");
 
 module.exports.GetClient = async () => {
   const DB = new Client({
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    host: process.env.HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
     port: process.env.DB_PORT,
-    database: process.env.DATABASE,
+    database: process.env.DB_DATABASE,
   });
   await DB.connect();
   return DB;

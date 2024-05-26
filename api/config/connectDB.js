@@ -1,14 +1,11 @@
 const { Client } = require("pg");
-const Async = require("../middlewares/Async");
-const ApiResponse = require("../controllers/response/ApiResponse");
-const ApiError = require("../controllers/error/ApiError");
 
 const DB = new Client({
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  host: process.env.HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
   port: process.env.DB_PORT,
-  database: process.env.DATABASE,
+  database: process.env.DB_DATABASE,
 });
 
 const ConnectDB = async (req, res) => {
