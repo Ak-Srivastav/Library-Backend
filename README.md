@@ -105,12 +105,26 @@ This table provides an overview of the available API endpoints for Seller.
 
 | Name | Method | Endpoint | Purpose |
 |---|---|---|---|
-| I.  Create    | POST | /api/seller/create | To Create a new book. |
-| II. GetBooks | GET | /api/seller/get | Fetch All Books Created by Current Seller. |
-| III. GetBook | GET | /api/seller/get/:id | Fetch Book details with id (parameter) if created by Current Seller. |
-
-
+| I.  Create    | POST | /api/seller/create | To Create a new book |
+| II. Create | POST | /api/seller/create-multiple | Create books using CSV (Refer example.csv) |
+| III. GetBooks | GET | /api/seller/get | Fetch All Books Created by Current Seller |
+| IV. GetBook | GET | /api/seller/get/:id | Fetch Book details with Book Id = id ,if exist |
+| V. UpdateBook | PUT | /api/seller/update/:id | Update Book Details with Book Id = id |
+| VI. DeleteBook | DELETE | /api/seller/delete/:id | Delete Book with Book Id = id |
 
 **Note:**
 
-* Note 1
+* Sellers can only View, Update, Delete Book which they've created.
+
+## Buyer
+
+This table provides an overview of the available API endpoints for Seller.
+
+| Name | Method | Endpoint | Purpose |
+|---|---|---|---|
+| I. GetBook | GET | /api/buyer/get | Fetch Book details with Book Id = id ,if exist |
+| II. GetBooks | GET | /api/buyer/get/:id | Fetch All Books |
+
+**Note:**
+
+* Buyer can view Books only after logging in.
