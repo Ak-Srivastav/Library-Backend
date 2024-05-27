@@ -11,7 +11,7 @@ const {
 const { verifyJWT } = require("../utils/jwt");
 
 router.post("/create", verifyJWT, createBook);
-router.post("/create-multiple/:id", verifyJWT, createBooks);
+router.post("/create-multiple", verifyJWT, createBooks);
 router.put("/update/:id", verifyJWT, updateBook);
 router.delete("/delete/:id", verifyJWT, deleteBook);
 router.get("/get/:id", verifyJWT, getBook);
