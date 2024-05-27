@@ -12,15 +12,14 @@ const createBook = Async(async (req, res) => {
   const {
     isbn,
     title,
-    author_id,
     publication_year,
     publisher,
     language,
     summary,
     available,
   } = req.body;
-  if (req.userid != author_id)
-    throw new ApiError("You can only add your books!", 401);
+
+  const author_id = req.userid;
   const DB = await GetClient();
   const qry = `INSERT INTO book (isbn, title, author_id, publication_year, publisher, language, summary, available) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
   const qryres = await DB.query(qry, [
@@ -59,11 +58,11 @@ const createBooks = Async(async (req, res) => {
     );
   const result = await getCSV();
   const successISBN = [];
-  const success = 0;
+  let success = 0;
   for (let i = 0; i < result.length; ++i) {
     const DB = await GetClient();
-    const qry = `INSERT INTO book (isbn, title, author_id, publication_year, publisher, language, summary, available) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-    const qryres = await DB.query(qry, result[i]);
+    const qry = `INSERT INTO book (isbn, title, publication_year, publisher, language, summary, available, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+    const qryres = await DB.query(qry, [...result[i], req.userid.toString()]);
     if (qryres.rowCount == 1) {
       success++;
       successISBN.push(result[i][0]);
