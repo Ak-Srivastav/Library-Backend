@@ -114,7 +114,7 @@ This table provides an overview of the available API endpoints for Seller.
 
 **Note:**
 
-* Here author_id denotes SellerID.
+* Author_id denotes SellerID.
 * Sellers can View, Update, Delete only those books which they've created.
 
 ## Buyer
